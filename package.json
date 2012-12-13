@@ -4,7 +4,7 @@
   "version": "0.2.0",
   "author": "Emil Bay <melgaard@tixz.dk>",
   "dependencies": {
-    "hogan.js": "3.x",
+    "hogan.js": "2.x",
     "underscore": "latest"
   },
   "keywords": [
