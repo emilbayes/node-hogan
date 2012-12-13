@@ -6,25 +6,44 @@ Note that I haven't written any tests for this yet, so it may very well break an
 
 ####Example
 
-    var express = require('express');
-    var HoganPartials = require('hogan-partials');
+######Server.js
+
+    var express = require('express'),
+        HoganPartials = require('hogan-partials');
+
     var app = express();
 
-    app.engine('html', (new HoganPartials()).__express)
+    app.engine('html', new HoganPartials());
     app.set('view engine', 'html');
-    app.set('views', __dirname + '/application/templates/');
+    app.set('views', __dirname+'/app/templates/');
 
-    app.enable('view cache');
-    app.set('view cache lifetime', 1000*60*60); //1 hour, default 1 week
-
+    app.enable('view cache'); //enabled by default
+    app.set('view cache lifetime', 1000 * 3600 * 6); //6 hours, default: 1 week
 
     app.get('/', function(req, res){
-        /*
-            Will load /application/templates/hello-world.html
-            and the partials it contains {{> partial }}
-
-        */
-      res.render('hello-world', {words: ['hello', 'world']});
+        res.render('layout', {
+            words: ['Hello', 'World'],
+            partials: {page: 'dynamic'}
+        });
     });
 
     app.listen(3000);
+
+
+######/app/templates/layout.html
+
+    <!doctype html>
+    <html lang="en">
+    <body>
+        {{#words}}
+            {{> word }}
+        {{/words}}
+        {{> page }} {{!Notice, this is a partial we specify}}
+    </body>
+    </html>
+
+######/app/templates/word.html
+    <h1>{{.}}</h1>
+
+######/app/templates/dynamic.html
+    <h1>Dynamic Page</h1>
