@@ -3,7 +3,6 @@
   "description": "Implementation for loading hogan.js partials in Express 3.x",
   "version": "0.2.0",
   "author": "Emil Bay <melgaard@tixz.dk>",
-  "private": true,
   "dependencies": {
     "hogan.js": "3.x",
     "underscore": "latest"
