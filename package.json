@@ -1,0 +1,22 @@
+{
+  "name": "express-hogan.js-partials",
+  "description": "Implementation for loading hogan.js partials in Express 3.x",
+  "version": "0.2.0",
+  "author": "Emil Bay <melgaard@tixz.dk>",
+  "private": true,
+  "dependencies": {
+    "hogan.js": "3.x",
+    "underscore": "latest"
+  },
+  "keywords": [
+    "hogan.js",
+    "partials",
+    "express",
+    "templates"
+  ],
+  "main": "index",
+  "scripts": {
+    "prepublish" : "npm prune"
+  },
+  "engines": { "node": "*" }
+}
