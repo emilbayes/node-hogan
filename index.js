@@ -6,13 +6,13 @@ var fs      = require('fs'),
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 var TemplateEngine = function TemplateEngine(){
-    this.__express = __bind(this.__express, this);
+    return __bind(this.__express, this);
 
 }
 
 TemplateEngine.prototype.__express = function(path, context, fn) {
     try {
-        if(this.cache == null)
+        if(this.cache == null && (settings['view cache'] != null ? settings['view cache'] : true))
         {
             this.cache = new TimedHashTable(
                 context.settings['view cache lifetime'] || 1000*3600*24*7
@@ -29,7 +29,7 @@ TemplateEngine.prototype.__express = function(path, context, fn) {
 TemplateEngine.prototype.render = function(path, context) {
     var templateName    = this.getTemplateName(path, context.settings),
         template        = this.getTemplate(templateName, context.settings),
-        options         = this.getPartials(template, context.settings);
+        options         = this.getPartials(template, context.settings, context.partials || {});
 
     return template.render(context, options);
 };
@@ -63,7 +63,7 @@ TemplateEngine.prototype.resolvePath = function(name, settings) {
     return basePath + name + ext;
 };
 
-TemplateEngine.prototype.getPartials = function(template, settings) {
+TemplateEngine.prototype.getPartials = function(template, settings, partialSubstitutions) {
     var tree = Hogan.parse(
         Hogan.scan(template.text)
     ),
@@ -84,7 +84,7 @@ TemplateEngine.prototype.getPartials = function(template, settings) {
 
     for (var i = 0; i < partialsNames.length; i++)
         partials[partialsNames[i]] =
-            this.getTemplate(partialsNames[i], settings).text;
+            this.getTemplate(partialSubstitutions[partialsNames[i]] || partialsNames[i], settings).text;
 
     return partials;
 };
