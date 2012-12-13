@@ -1,5 +1,5 @@
 {
-  "name": "express-hogan.js-partials",
+  "name": "hogan-partials",
   "description": "Implementation for loading hogan.js partials in Express 3.x",
   "version": "0.2.0",
   "author": "Emil Bay <melgaard@tixz.dk>",
