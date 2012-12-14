@@ -5,7 +5,7 @@
   "author": "Emil Bay <melgaard@tixz.dk>",
   "dependencies": {
     "hogan.js": "2.x",
-    "underscore": "latest"
+    "lodash": "1.x"
   },
   "keywords": [
     "hogan.js",

@@ -1,7 +1,7 @@
 //No guarantees yet, as I have yet to write tests. However it "seems" to work well enough
 
 var fs      = require('fs'),
-    _       = require('underscore'),
+    _       = require('lodash/lodash.underscore'),
     Hogan   = require('hogan.js'),
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
