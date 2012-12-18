@@ -78,7 +78,7 @@ TemplateEngine.prototype.getPartials = function(template) {
     var childPartials;
     for(parentPartial in partials)
     {
-        for(childPartial in (childPartials = this.getPartials(parentPartial)))
+        for(childPartial in (childPartials = this.getPartials(partials[parentPartial])))
         {
             partials[childPartial] = childPartials[childPartial];
         }
