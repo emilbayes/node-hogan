@@ -5,7 +5,8 @@
   "author": "Emil Bay <melgaard@tixz.dk>",
   "dependencies": {
     "hogan.js": "2.x",
-    "lodash": "1.x"
+    "lodash": "1.x",
+    "node-datastructures": "git://github.com/tixz/node-datastructures.git"
   },
   "keywords": [
     "hogan.js",
