@@ -13,7 +13,7 @@ var TemplateEngine = module.exports = function TemplateEngine(){
 
 TemplateEngine.prototype.__express = function(path, context, fn) {
     try {
-        if(this.cache == null && (contextv.settings['view cache'] != null ? context.settings['view cache'] : true))
+        if(this.cache == null && (context.settings['view cache'] != null ? context.settings['view cache'] : true))
         {
             this.cache = new TimedHashTable(
                 context.settings['view cache lifetime'] || 1000*3600*24*7
