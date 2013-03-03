@@ -1,7 +1,7 @@
 //No guarantees yet, as I have yet to write tests. However it "seems" to work well enough
 
 var fs              = require('fs'),
-    _               = require('lodash/lodash.underscore'),
+    _               = require('lodash/dist/lodash.underscore'),
     Hogan           = require('hogan.js'),
     TimedHashTable  = require('node-datastructures/lib/timed-hash-table'),
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
