@@ -61,10 +61,14 @@ TemplateEngine.prototype.loadFromFile = function(name) {
 }
 
 TemplateEngine.prototype.resolvePath = function(name) {
-    var basePath    = this.settings['views'].replace(/\/$/, '') + '/',
-        ext         = '.' + this.settings['view engine'].replace(/^\./, '');
+    var
 
-    return basePath + name + ext;
+    var basePath    = this.settings['views'].replace(/\/$/, ''),
+        ext         = this.settings['view engine']
+                        ? this.settings['view engine'].replace(/^\./, '')
+                        : 'html';
+
+    return basePath + '/' + name + '.' + ext;
 };
 
 TemplateEngine.prototype.getPartials = function(template) {
