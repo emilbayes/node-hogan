@@ -61,7 +61,6 @@ TemplateEngine.prototype.loadFromFile = function(name) {
 }
 
 TemplateEngine.prototype.resolvePath = function(name) {
-    var
 
     var basePath    = this.settings['views'].replace(/\/$/, ''),
         ext         = this.settings['view engine']
