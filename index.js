@@ -1,23 +1,34 @@
 //No guarantees yet, as I have yet to write tests. However it "seems" to work well enough
 
+/*
+
+    Notes:
+
+        Yield
+        Global Partials
+        Hash options when caching
+
+
+
+*/
+
+
 var fs              = require('fs'),
     _               = require('lodash/dist/lodash.underscore'),
     Hogan           = require('hogan.js'),
-    TimedHashTable  = require('node-datastructures/lib/timed-hash-table'),
+    TimedHashTable  = require('node-datastructures').TimedHashTable,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 var TemplateEngine = module.exports = function TemplateEngine(){
     return __bind(this.__express, this);
-
 }
 
 TemplateEngine.prototype.__express = function(path, context, fn) {
     try {
-        if(this.cache == null && (context.settings['view cache'] != null ? context.settings['view cache'] : true))
-        {
+        if(context && context.settings && context.settings['view cache'] && !this.cache) {
             this.cache = new TimedHashTable(
                 context.settings['view cache lifetime'] || 1000*3600*24*7
-            )
+            );
         }
 
         return fn(null, this.render(path, context));
