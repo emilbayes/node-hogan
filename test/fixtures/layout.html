@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    {{> scripts }} {{! fixed partial }}
+</head>
+<body>
+    {{> head }} {{! dynamic partial }}
+    {{{ yield }}} {{! layout body }}
+    {{> footer }}
+</body>
+</html>
