@@ -14,8 +14,10 @@ Note that I haven't written any tests for this yet, so it may very well break an
     var app = express();
 
     app.engine('html', new HoganPartials());
-    app.set('view engine', 'html');
     app.set('views', __dirname+'/app/templates/');
+    app.set('view engine', 'html');
+    app.set('view layout', '')
+    app.set('view partials', {head: ''})
 
     app.enable('view cache'); //enabled by default
     app.set('view cache lifetime', 1000 * 3600 * 6); //6 hours, default: 1 week
