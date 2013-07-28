@@ -25,7 +25,7 @@ function render(path, options, cb) {
 
         if(options.settings['view layout']) {
             options.partials.yield = path;
-            path = options.settings['view layout'];
+            path = options.settings['views'] + options.settings['view layout'];
         }
 
         read(path, options, function(err, template) {
@@ -83,12 +83,7 @@ function _read(path, options, cb) {
  *
  * @callback <String> Template contents
  */
-function _readFile(filename, options, cb) {
-    var path = '';
-
-    if(options.settings['views']) path += options.settings['views'];
-    path += filename;
-
+function _readFile(path, options, cb) {
     fs.readFile(path, {encoding: 'utf8'}, cb);
 }
 
