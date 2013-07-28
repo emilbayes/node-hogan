@@ -14,21 +14,25 @@
 
 
 var fs              = require('fs'),
+    path            = require('path'),
     Hogan           = require('hogan.js'),
     TimedHashTable  = require('node-datastructures').TimedHashTable;
 
 var cacheStore;
 
-function render(path, options, cb) {
+function render(templatePath, options, cb) {
     try {
+        templatePath = path.relative(options.settings['views'], templatePath);
+
         if(options.partials === undefined) options.partials = {};
 
         if(options.settings['view layout']) {
-            options.partials.yield = path;
-            path = options.settings['views'] + options.settings['view layout'];
+            options.partials.yield = templatePath;
+
+            templatePath = options.settings['view layout'];
         }
 
-        read(path, options, function(err, template) {
+        read(templatePath, options, function(err, template) {
             if(err) return cb(err);
 
             readPartials(template, options, function(err, partials) {
@@ -47,10 +51,10 @@ function render(path, options, cb) {
  * Reads a template and resolves partials.
  * @return <Function> Hogan compiled template
  */
-function read(path, options, cb) {
+function read(templatePath, options, cb) {
     var template;
 
-    _read(path, options, function(err, template) {
+    _read(templatePath, options, function(err, template) {
         if(err) return cb(err);
 
         cb(null, template);
@@ -62,18 +66,18 @@ function read(path, options, cb) {
  * the file and, if caching is enabled, cache the compiled template.
  */
 
-function _read(path, options, cb) {
-    if(cacheStore && cacheStore.has(path)) {
-        return cb(null, cacheStore.get(path));
+function _read(filePath, options, cb) {
+    if(cacheStore && cacheStore.has(filePath)) {
+        return cb(null, cacheStore.get(filePath));
     }
 
-    _readFile(path, options, function(err, str) {
+    _readFile(filePath, options, function(err, str) {
         var template;
 
         if(err) return cb(err);
 
         template = Hogan.compile(str);
-        if(cacheStore) cacheStore.set(path, template);
+        if(cacheStore) cacheStore.set(filePath, template);
 
         cb(null, template);
     });
@@ -83,8 +87,10 @@ function _read(path, options, cb) {
  *
  * @callback <String> Template contents
  */
-function _readFile(path, options, cb) {
-    fs.readFile(path, {encoding: 'utf8'}, cb);
+function _readFile(filePath, options, cb) {
+    fs.readFile(path.join(options.settings['views'], filePath),
+                {encoding: 'utf8'}, 
+                cb);
 }
 
 /**
@@ -167,7 +173,7 @@ function readPartials(rootTemplate, options, cb) {
 
 
 var initialized;
-function NodeHogan(path, options, fn) {
+function NodeHogan(file, options, fn) {
     if(!initialized) {
         initialized = true;
 
@@ -184,7 +190,7 @@ function NodeHogan(path, options, fn) {
         }
     }
 
-    return render(path, options, fn);
+    return render(file, options, fn);
 }
 
 module.exports = exports = NodeHogan;

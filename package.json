@@ -1,7 +1,7 @@
 {
   "name": "node-hogan",
   "description": "Implementation for loading hogan.js with layouts and partials for Express 3.x",
-  "version": "0.4.0-0",
+  "version": "0.4.0-1",
   "author": "Emil Bay <desk@tixz.dk>",
   "repository": "https://github.com/tixz/node-hogan.git",
   "license": "MIT",
