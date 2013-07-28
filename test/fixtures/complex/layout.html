@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
-    {{> scripts }} {{! fixed partial }}
+    <title>{{ title }}</title>
+    {{> complex/scripts.html }} {{! fixed partial }}
 </head>
 <body>
     {{> head }} {{! dynamic partial }}
-    {{{ yield }}} {{! layout body }}
-    {{> footer }}
+    {{> yield }} {{! layout body }}
+    {{> complex/footer.html }}
 </body>
 </html>

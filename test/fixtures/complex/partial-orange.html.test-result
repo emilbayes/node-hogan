@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>alert('test');</script>
+</head>
+<body>
+    <h1>Orange</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium, delectus, at inventore expedita optio numquam quas labore id quis asperiores repudiandae nemo accusantium incidunt culpa dolor. Excepturi, blanditiis officia asperiores.</p>
+    &copy; 2013
+</body>
+</html>
