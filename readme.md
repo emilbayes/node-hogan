@@ -10,6 +10,10 @@ Hogan.js templating engine, for [express.js](http://expressjs.com/).
 Currently supporting the latest version of Hogan.js on npm (2.0).
 When Hogan.js 3.0 is published I'll revisit layouts, as template inheritance makes the current implementation redundant.
 
+####Install
+
+    npm install node-hogan
+
 ####Example
 
 ######Server.js
