@@ -19,11 +19,11 @@ When Hogan.js 3.0 is published I'll revisit layouts, as template inheritance mak
 ######Server.js
 
     var express = require('express'),
-        HoganPartials = require('hogan-partials');
+        nodeHogan = require('node-hogan');
 
     var app = express();
 
-    app.engine('html', new HoganPartials());
+    app.engine('html', new nodeHogan());
     app.set('views', __dirname+'/app/templates/');
     app.set('view engine', 'html');
     app.set('view layout', 'layout')
